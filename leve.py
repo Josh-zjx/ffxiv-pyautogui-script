@@ -1,15 +1,10 @@
 # This is a sample Python script.
+from util import *
 import time
 import pyautogui
 import argparse
 parser = argparse.ArgumentParser(prog="FFXIV-LeveResolver",description="automate accepting and submiting carrot leve quests")
 parser.add_argument('-c','--count')
-
-def get_sleep_time():
-    return 0.4
-
-def sleep_random_time():
-    time.sleep((get_sleep_time()))
 
 def find_category():
     button = pyautogui.locateOnScreen("assets/category.png", confidence=0.9)
@@ -22,43 +17,45 @@ def find_carrot():
 def reenter_select_menu():
     # Exit and reenter select menu inorder to deal with randomized image match failure
 
-    sleep_random_time()
+    key_interval()
     pyautogui.press("esc")
     #Exiting select menu
-    sleep_random_time()
-    pyautogui.press('num2')
+    key_interval()
+    down()
+    key_interval()
     #Move focus to second item
-    sleep_random_time()
-    pyautogui.press('num0')
+    enter()
+    key_interval()
     #Reenter select menu
 
 def select_carrot():
     button = find_carrot()
     while button == None :
         reenter_select_menu()
-        sleep_random_time()
+        key_interval()
         select_category()
         button = find_carrot()
 
     pyautogui.click(button)
     print("Click Carrot\n")
-    sleep_random_time()
-    pyautogui.press('num0')
-    sleep_random_time()
+    key_interval()
+    enter()
+    key_interval()
     print("Focus\n")
-    pyautogui.press('num0')
-    sleep_random_time()
+    enter()
+    key_interval()
     print("Focus on Confirm\n")
-    pyautogui.press('num0')
-    sleep_random_time()
+    enter()
+    key_interval()
     print("confirm\n")
-    pyautogui.press('num0')
-    sleep_random_time()
+    enter()
+    key_interval()
     print("Exit selection menu\n")
-    pyautogui.press("esc")
-    sleep_random_time()
+    exit()
+    key_interval()
     print("Exit conversation menu\n")
-    pyautogui.press("esc")
+    exit()
+    key_interval()
 
 
 def select_category():
@@ -67,38 +64,38 @@ def select_category():
         reenter_select_menu()
         button = find_category()
     pyautogui.click(button)
-    sleep_random_time()
+    key_interval()
     pyautogui.click(button)
     pyautogui.click(button)
 
 def turn_right():
-    sleep_random_time()
+    key_interval()
     pyautogui.keyDown('right')
     time.sleep(0.6)
     pyautogui.keyUp('right')
 
 def turn_left():
-    sleep_random_time()
+    key_interval()
     pyautogui.keyDown('left')
     time.sleep(0.6)
     pyautogui.keyUp('left')
 
 def submit():
     for _ in range(10):
-        sleep_random_time()
-        pyautogui.press('num0')
-    sleep_random_time()
+        key_interval()
+        enter()
+    key_interval()
 
 def ask():
     #Select and Skip Conversation
     for _ in range(3):
-        time.sleep(get_sleep_time()*2)
-        pyautogui.press('num0')
+        time.sleep(time_short_sleep()*2)
+        enter()
 
-    sleep_random_time()
-    pyautogui.press('num2')
-    sleep_random_time()
-    pyautogui.press('num0')
+    key_interval()
+    down()
+    key_interval()
+    enter()
 
 def do_one_loop():
     time.sleep(2)
