@@ -9,7 +9,7 @@ def select_nth_employee(n):
     enter()
     wait_conversation()
     enter()
-    wait_conversation()
+    wait_window_interaction()
 
 def collect_and_reset_explore():
     # select explore and enter
@@ -17,13 +17,13 @@ def collect_and_reset_explore():
         down()
         key_interval()
     enter()
-    key_interval()
+    wait_window_interaction()
 
     # select reset explore
     left()
     key_interval()
     enter()
-    key_interval()
+    wait_window_interaction()
 
     # confirm explore
     left()
@@ -31,11 +31,11 @@ def collect_and_reset_explore():
     enter()
     wait_conversation()
     enter()
-    wait_conversation()
+    wait_window_interaction()
 
 def exit_employee():
     exit()
-    key_interval()
+    wait_window_interaction()
     exit()
     wait_conversation()
 

@@ -40,7 +40,7 @@ def select_carrot():
 
     pyautogui.click(button)
     print("Click Carrot\n")
-    key_interval()
+    wait_window_interaction()
     enter()
     key_interval()
     print("Focus\n")
@@ -51,7 +51,7 @@ def select_carrot():
     key_interval()
     print("confirm\n")
     enter()
-    key_interval()
+    wait_window_interaction()
     print("Exit selection menu\n")
     exit()
     key_interval()
@@ -66,7 +66,7 @@ def select_category():
         reenter_select_menu()
         button = find_category()
     pyautogui.click(button)
-    key_interval()
+    wait_window_interaction()
     pyautogui.click(button)
     pyautogui.click(button)
 
@@ -118,13 +118,14 @@ def ask():
     wait_conversation()
     enter()
 
-    key_interval()
+    wait_window_interaction()
     down()
     key_interval()
     enter()
+    wait_window_interaction()
 
 def do_one_loop():
-    time.sleep(2)
+    #time.sleep(2)
     select_category()
     select_carrot()
     turn_right()
