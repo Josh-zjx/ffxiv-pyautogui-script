@@ -7,11 +7,13 @@ parser = argparse.ArgumentParser(prog="FFXIV-LeveResolver",description="automate
 parser.add_argument('-c','--count')
 
 def find_category():
-    button = pyautogui.locateOnScreen("assets/category.png", confidence=0.9)
+    # target image should be captured on deployment machine to correctly match option texture in game
+    button = pyautogui.locateOnScreen("assets/category.png", confidence=0.95)
     return button
 
 def find_carrot():
-    button = pyautogui.locateOnScreen("assets/carrot.png", confidence=0.8)
+    # target image should be captured on deployment machine to correctly match option texture in game
+    button = pyautogui.locateOnScreen("assets/carrot.png", confidence=0.85)
     return button
 
 def reenter_select_menu():
@@ -71,26 +73,50 @@ def select_category():
 def turn_right():
     key_interval()
     pyautogui.keyDown('right')
-    time.sleep(0.6)
+    time.sleep(0.65)
     pyautogui.keyUp('right')
 
 def turn_left():
     key_interval()
     pyautogui.keyDown('left')
-    time.sleep(0.6)
+    time.sleep(0.65)
     pyautogui.keyUp('left')
 
 def submit():
-    for _ in range(10):
+
+    # 7 enters to submit the first good in inventory
+    # 1. select npc 
+    # 2. enter conver 
+    # 3. enter inv 
+    # 4. select first item 
+    # 5.confirm first item 
+    # 6.submit item 
+    # 7. confirm submit
+    for _ in range(7):
+        key_interval()
+        enter()
+
+
+    # slow conversation anime after submit good
+    wait_conversation()
+
+    # 3 enters to end submission
+    # 1. exit conv
+    # 2. exit system notification
+    # 3. exit quest result
+    for _ in range(3):
         key_interval()
         enter()
     key_interval()
 
 def ask():
     #Select and Skip Conversation
-    for _ in range(3):
-        time.sleep(time_short_sleep()*2)
-        enter()
+    key_interval()
+    enter()
+    key_interval()
+    enter()
+    wait_conversation()
+    enter()
 
     key_interval()
     down()

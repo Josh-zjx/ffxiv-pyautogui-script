@@ -21,17 +21,20 @@ def right():
 def enter():
     pyautogui.press('num0')
 
-def time_short_sleep():
-    return random.randint(1, 3) / 10.0
-
-def time_long_sleep():
-    return 2.5
+#def time_short_sleep():
+#    return random.randint(1, 3) / 10.0
+#
+#def time_long_sleep():
+#    return 2
 
 def wait_conversation():
-    time.sleep(time_long_sleep())
+    time.sleep(2)
+
+def wait_window_interaction():
+    time.sleep(0.5)
 
 def key_interval():
-    time.sleep((time_short_sleep()))
+    time.sleep(0.1)
 
 if __name__ == '__main__':
     print("util shouldn't be used")
